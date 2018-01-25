@@ -7,19 +7,28 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
+/**
+ * @Author   yang_tao@<yangtao.letzgo.com.cn>
+ * @Date     2017-08-31 17:08
+ * @Version  1.0
+ */
 @SpringBootApplication
 @ServletComponentScan(basePackages = "com.allen.web.**")
 @ComponentScan(basePackages = "com.allen.**")
 public class MyWebApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MyWebApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MyWebApplication.class, args);
+    }
 
-	//默认的内嵌容器Tomcat切换为Jetty
-	@Bean
-	public ServletWebServerFactoryAutoConfiguration.EmbeddedJetty container() {
+    /**
+     * 默认的内嵌容器Tomcat切换为Jetty
+     *
+     * @return
+     */
+    @Bean
+    public ServletWebServerFactoryAutoConfiguration.EmbeddedJetty container() {
 
-		return new ServletWebServerFactoryAutoConfiguration.EmbeddedJetty();
-	}
+        return new ServletWebServerFactoryAutoConfiguration.EmbeddedJetty();
+    }
 }

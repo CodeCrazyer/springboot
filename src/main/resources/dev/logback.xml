@@ -2,72 +2,49 @@
 <configuration >
 	<property name="LOG_HOME" value="D:/project_logs" />
 	<property name="PROJECT_NAME" value="springboot" />
+	<property name="CONSOLE_OUT_PATTERN" value="%d [%thread] %highlight(%-5level) %cyan(%logger{35}) - %msg%n"/>
+	<property name="FILE_OUT_PATTERN" value="%d [%thread] %-5level %logger{35} - %msg%n"/>
 	<!-- 控制台输出 -->
 	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
-		<!--<withJansi>true</withJansi>-->
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符 -->
-			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %highlight(%-5level) %cyan(%logger{50}) - %msg%n</pattern>
-			<!-- <charset>UTF-8</charset> 此处设置字符集 -->
+			<pattern>${CONSOLE_OUT_PATTERN}</pattern>
 		</encoder>
 	</appender>
 
 	<!-- info输出 -->
 	<appender name="info-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<!--<withJansi>true</withJansi>-->
-		<File>${LOG_HOME}/${PROJECT_NAME}_log_info.log</File>
+		<File>${LOG_HOME}/${PROJECT_NAME}_info.log</File>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<FileNamePattern>${LOG_HOME}/${PROJECT_NAME}_info.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
-			<maxHistory>30</maxHistory><!--文件保留30天-->
-			<totalSizeCap>3GB</totalSizeCap><!--日志所有文件总大小为3GB-->
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>3GB</totalSizeCap>
 		</rollingPolicy>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %highlight(%-5level) %cyan(%logger{80}) - %msg%n</Pattern>
-			<charset>UTF-8</charset> <!-- 此处设置字符集 -->
+			<pattern>${FILE_OUT_PATTERN}</pattern>
+			<charset>UTF-8</charset>
 		</encoder>
 	</appender>
 
 	<!-- ERROR输出 -->
 	<appender name="error-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<!--<withJansi>true</withJansi>-->
 		<filter class="ch.qos.logback.classic.filter.ThresholdFilter">
 			<level>ERROR</level>
 		</filter>
-		<File>${LOG_HOME}/${PROJECT_NAME}_log_error.log</File>
+		<File>${LOG_HOME}/${PROJECT_NAME}_error.log</File>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${LOG_HOME}/${PROJECT_NAME}_log_error.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
-			<maxHistory>30</maxHistory><!--文件保留30天-->
-			<totalSizeCap>3GB</totalSizeCap><!--日志所有文件总大小为3GB-->
+			<FileNamePattern>${LOG_HOME}/${PROJECT_NAME}_error.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
+			<maxHistory>30</maxHistory>
+			<totalSizeCap>3GB</totalSizeCap>
 		</rollingPolicy>
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>%d{yyyy-MM-dd HH:mm:ss} [%thread] %highlight(%-5level) %cyan(%logger{80}) - %msg%n</Pattern>
-			<charset>UTF-8</charset> <!-- 此处设置字符集 -->
+			<pattern>${FILE_OUT_PATTERN}</pattern>
+			<charset>UTF-8</charset>
 		</encoder>
 	</appender>
 
-	<!-- uri输出 -->
-	<appender name="uri-file" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<!--<withJansi>true</withJansi>-->
-		<File>${LOG_HOME}/${PROJECT_NAME}_uri_log_info.log</File>
-		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${LOG_HOME}/${PROJECT_NAME}_uri_log_info.%d{yyyy-MM-dd}.log.zip</FileNamePattern>
-			<maxHistory>30</maxHistory><!--文件保留30天-->
-			<totalSizeCap>3GB</totalSizeCap><!--日志所有文件总大小为3GB-->
-		</rollingPolicy>
-		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>%date %highlight(%-5level) %cyan(%logger{80}) - %msg%n</Pattern>
-			<charset>UTF-8</charset> <!-- 此处设置字符集 -->
-		</encoder>
-	</appender>
-	<logger name ="uri_log" level="INFO">
-		<appender-ref ref="uri-file" />
-	</logger>
-<!--  	<logger name="com.visionet" level="DEBUG" /> -->
-<!--  	<logger name="com.alibaba" level="TRACE" /> -->
- 	
 	<root level="INFO">
 		<appender-ref ref="info-file"/>
 		<appender-ref ref="error-file" />
 		<appender-ref ref="stdout" />
 	</root>
-</configuration> 
+</configuration>

@@ -8,13 +8,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 /**
- * Author   yang_tao@<yangtao.letzgo.com.cn>
- * Date     2017-08-31 18:12
- * Version  1.0
+ * @Author yang_tao@<yangtao.letzgo.com.cn>
+ * @Date 2017-08-31 17:08
+ * @Version 1.0
  */
-//@Configuration
+@Configuration
 public class FilterConfiguration {
-//        @Bean
+    @Bean
     public FilterRegistrationBean encodingFilter() {
         FilterRegistrationBean<CharacterEncodingFilter> filter = new FilterRegistrationBean(new CharacterEncodingFilter());
         filter.addInitParameter("encoding", "UTF-8");
@@ -23,7 +23,7 @@ public class FilterConfiguration {
         return filter;
     }
 
-//    @Bean
+    @Bean
     public FilterRegistrationBean ipAddressFilter() {
         FilterRegistrationBean<IpAddressFilter> filter = new FilterRegistrationBean(new IpAddressFilter());
         filter.addUrlPatterns("/*");

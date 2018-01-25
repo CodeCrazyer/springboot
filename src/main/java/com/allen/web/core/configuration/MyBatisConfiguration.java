@@ -15,9 +15,9 @@ import javax.sql.DataSource;
 import java.io.IOException;
 
 /**
- * Author   yang_tao@<yangtao.letzgo.com.cn>
- * Date     2017-09-01 14:20
- * Version  1.0
+ * @Author   yang_tao@<yangtao.letzgo.com.cn>
+ * @Date     2017-08-31 17:08
+ * @Version  1.0
  */
 @Configuration
 @EnableTransactionManagement
